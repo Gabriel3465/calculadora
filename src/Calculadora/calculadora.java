@@ -5,14 +5,16 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class calculadora extends JFrame {
-
-
+	
+	
+	
 	public calculadora() {
 
 		setVisible(true);
@@ -23,31 +25,18 @@ public class calculadora extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //    	setMaximumSize(new Dimension(700, 700));
 //    	setMinimumSize(new Dimension(360, 360));
+		
+		 ImageIcon fondoIcono = new ImageIcon("FondoDeNaranja.png");
+		 setIconImage(fondoIcono.getImage());
 
-//    	botonesComponentes();
+//		this.add(this.calculos());
+		this.add(this.calculos2());
 
-		this.add(this.calculos());
 
 		this.repaint();
 
 	}
 
-//		private void botonesComponentes() {
-//
-//			JPanel panelPrincipal = new JPanel();
-//			panelPrincipal.setBackground(Color.decode("#000000"));
-//			panelPrincipal.setOpaque(true);
-//			panelPrincipal.setLocation(0, 110);
-//			panelPrincipal.setSize(390, 800);
-//			panelPrincipal.setLayout(null);
-//
-//			setLayout(new GridLayout(4, 4));
-//
-//			for (int i = 0; i < arregloBotones.length; i++) {
-//				arregloBotones[i] = new JButton("Boton " + (i + 1));
-//				add(arregloBotones[i]);
-//			}
-//		}
 	
 	public class Estilos {
 		public static void aplicarEstilo(JButton boton) {
@@ -63,6 +52,18 @@ public class calculadora extends JFrame {
 			boton.setForeground(Color.WHITE); // Color de letra
 			boton.setFont(new Font("Bahnschrift", Font.BOLD, 20)); // Tipo y tamaño de letra
 		}
+	}
+	
+	public JPanel calculos2() {
+		
+		JPanel panelPrincipal = new JPanel();
+		panelPrincipal.setBackground(Color.decode("#000000"));
+		panelPrincipal.setOpaque(true);
+		panelPrincipal.setSize(500, 800);
+		panelPrincipal.setLocation(0, 0);
+		panelPrincipal.setLayout(null);
+		
+		return panelPrincipal;	
 	}
 
 	public JPanel calculos() {
