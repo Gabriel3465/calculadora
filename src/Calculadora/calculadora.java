@@ -1,23 +1,25 @@
 package Calculadora;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.sql.ResultSet;
+import java.util.Iterator;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class calculadora extends JFrame {
-	
-	
-	
+
 	public calculadora() {
 
-		setVisible(true);
 		setSize(385, 450);
 		setLocationRelativeTo(null);
 
@@ -25,45 +27,120 @@ public class calculadora extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //    	setMaximumSize(new Dimension(700, 700));
 //    	setMinimumSize(new Dimension(360, 360));
-		
-		 ImageIcon fondoIcono = new ImageIcon("FondoDeNaranja.png");
-		 setIconImage(fondoIcono.getImage());
+
+		ImageIcon fondoIcono = new ImageIcon("FondoDeNaranja.png");
+		setIconImage(fondoIcono.getImage());
 
 //		this.add(this.calculos());
 		this.add(this.calculos2());
 
-
 		this.repaint();
+		setVisible(true);
 
 	}
 
-	
+	public JPanel calculos2() {
+
+		// PANEL PRINCIPAL///////////////////////////////////////////////////////////////////
+		JPanel panelPrincipal1 = new JPanel();
+
+		panelPrincipal1.setBackground(Color.decode("#7F7F7F"));
+		panelPrincipal1.setOpaque(true);
+		panelPrincipal1.setLayout(new BorderLayout());
+
+		// Panel para mostrar operaciones///////////////////////
+		JLabel operaciones = new JLabel("89.00");
+		operaciones.setBackground(Color.white);
+		operaciones.setOpaque(true);
+		operaciones.setFont(new Font("Bahnschrift", Font.BOLD, 40));
+		operaciones.setHorizontalAlignment(JLabel.RIGHT);
+		panelPrincipal1.add(operaciones, BorderLayout.NORTH);
+
+		// panel que contiene los dos paneles de botones"SOLO SE USA PARA QUE CONTENGA PANELES"
+		JPanel centro = new JPanel();
+		centro.setBackground(Color.decode("#33ffa2"));
+		centro.setOpaque(true);
+		centro.setLayout(new BorderLayout());
+		panelPrincipal1.add(centro, BorderLayout.CENTER);
+
+		// panel que tiene los numeros y "." , "=" ////////////////////////////
+		JPanel botones = new JPanel();
+		botones.setLayout(new GridLayout(4, 3));
+		centro.add(botones, BorderLayout.CENTER);
+
+		String[] numerosBoton = { "7", "8", "9", "4", "5", "6", "1", "2", "3", ".", "0", "=" };
+
+		for (String numeroTexto : numerosBoton) {
+			JButton boton = new JButton(numeroTexto);
+
+			if (numeroTexto.equals("=") || numeroTexto.equals(".")) {
+				Estilos2.aplicarEstilo(boton);
+			} else {
+				Estilos.aplicarEstilo(boton);
+			}
+			botones.add(boton);
+		}
+
+		// botones que tiene las operaciones prinecipales// //////////////////////////////
+		JPanel botonesOperaciones = new JPanel();
+		botonesOperaciones.setLayout(new GridLayout(4, 1));
+		centro.add(botonesOperaciones, BorderLayout.EAST);
+
+		String[] operacionesBoton1 = { "/", "*", "-", "+" };
+
+		for (String operacionTexto : operacionesBoton1) {
+			JButton boton1 = new JButton(operacionTexto);
+			Estilos2.aplicarEstilo(boton1);
+			botonesOperaciones.add(boton1);
+		}
+
+		// Botones que estan en la parte superior/////////////////////////////////////////
+		JPanel botonesSuperior = new JPanel();
+		botonesSuperior.setLayout(new GridLayout(1, 4));
+		centro.add(botonesSuperior, BorderLayout.NORTH);
+
+		String[] operacionesBoton2 = { "CE", "%", "M+", "M-" };
+
+		for (String operacionTexto : operacionesBoton2) {
+			JButton boton2 = new JButton(operacionTexto);
+
+			if (operacionTexto.equals("CE")) {
+				Estilos3.aplicarEstilo(boton2);
+			} else {
+				Estilos2.aplicarEstilo(boton2);
+			}
+
+			botonesSuperior.add(boton2);
+		}
+
+		return panelPrincipal1;
+	}
+
+	// Estilo para botonoes normales(gris)////////////////////////
 	public class Estilos {
 		public static void aplicarEstilo(JButton boton) {
 			boton.setBackground(Color.decode("#333333")); // Color de fondo
 			boton.setForeground(Color.WHITE); // Color de letra
-			boton.setFont(new Font("Bahnschrift", Font.BOLD, 17)); // Tipo y tamaño de letra
+			boton.setFont(new Font("Bahnschrift", Font.BOLD, 20)); // Tipo y tamaño de letra
 		}
 	}
-	
+
+	// estilo para bonotes que rasalte(Naranja)///////////////////////////
 	public class Estilos2 {
 		public static void aplicarEstilo(JButton boton) {
 			boton.setBackground(Color.decode("#EF9A37")); // Color de fondo
 			boton.setForeground(Color.WHITE); // Color de letra
-			boton.setFont(new Font("Bahnschrift", Font.BOLD, 20)); // Tipo y tamaño de letra
+			boton.setFont(new Font("Bahnschrift", Font.BOLD, 25)); // Tipo y tamaño de letra
 		}
 	}
-	
-	public JPanel calculos2() {
-		
-		JPanel panelPrincipal = new JPanel();
-		panelPrincipal.setBackground(Color.decode("#000000"));
-		panelPrincipal.setOpaque(true);
-		panelPrincipal.setSize(500, 800);
-		panelPrincipal.setLocation(0, 0);
-		panelPrincipal.setLayout(null);
-		
-		return panelPrincipal;	
+
+	// Estilo para botones especiales(Rojo)///////////////////7
+	public class Estilos3 {
+		public static void aplicarEstilo(JButton boton) {
+			boton.setBackground(Color.decode("#fc3f16")); // Color de fondo
+			boton.setForeground(Color.WHITE); // Color de letra
+			boton.setFont(new Font("Bahnschrift", Font.BOLD, 25));
+		}
 	}
 
 	public JPanel calculos() {
@@ -140,7 +217,8 @@ public class calculadora extends JFrame {
 		boton9.setBounds(190, 170, 80, 50);
 		panelPrincipal.add(boton9);
 
-		// Botones operaciones  ///////////////////////////////////////////////////////////////////////////////////////////////////
+		// Botones operaciones
+		// ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 		JButton botonDivision = new JButton("/");
 		botonDivision.setBounds(280, 170, 80, 50);
@@ -176,8 +254,7 @@ public class calculadora extends JFrame {
 		botonBorrar.setBounds(10, 110, 80, 50);
 		botonBorrar.setFont(new Font("Bahnschrift", Font.BOLD, 16));
 		panelPrincipal.add(botonBorrar);
-		
-		
+
 		return panelPrincipal;
 
 	}
