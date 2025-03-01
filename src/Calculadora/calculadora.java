@@ -20,7 +20,7 @@ public class calculadora extends JFrame {
 
 	public calculadora() {
 
-		setSize(385, 450);
+		setSize(385,500);
 		setLocationRelativeTo(null);
 
 		setTitle("Calculadora");
@@ -32,11 +32,129 @@ public class calculadora extends JFrame {
 		setIconImage(fondoIcono.getImage());
 
 //		this.add(this.calculos());
-		this.add(this.calculos2());
+//		this.add(this.calculos2());
+		this.add(calculoInteres());
+		
 
 		this.repaint();
 		setVisible(true);
 
+	}
+	
+	public JPanel calculoInteres() {
+
+		// PANEL PRINCIPAL///////////////////////////////////////////////////////////////////
+		JPanel panelPrincipal1 = new JPanel();
+
+		panelPrincipal1.setBackground(Color.decode("#7F7F7F"));
+		panelPrincipal1.setOpaque(true);
+		panelPrincipal1.setLayout(new BorderLayout());
+
+		// Panel para mostrar operaciones///////////////////////
+		JLabel operaciones = new JLabel("Interes");
+		operaciones.setBackground(Color.white);
+		operaciones.setOpaque(true);
+		operaciones.setFont(new Font("Bahnschrift", Font.BOLD, 40));
+		operaciones.setHorizontalAlignment(JLabel.LEFT);
+		panelPrincipal1.add(operaciones, BorderLayout.NORTH);
+
+		// panel que contiene los dos paneles de botones"SOLO SE USA PARA QUE CONTENGA PANELES"
+		JPanel centro = new JPanel();
+		centro.setOpaque(true);
+		centro.setBackground(Color.decode("#33ffa2"));
+		centro.setLayout(new BorderLayout());
+		panelPrincipal1.add(centro, BorderLayout.CENTER);
+		
+		JPanel panelSur = new JPanel();
+		panelSur.setOpaque(true);
+		panelSur.setBackground(Color.decode("#EF9A37"));
+		panelSur.setLayout(new BorderLayout());
+		panelPrincipal1.add(panelSur, BorderLayout.SOUTH);
+
+		// panel de la parte del centro////////////////////////////
+		
+		
+		JLabel calculo6 = new JLabel("calculo de interes");
+		calculo6.setBackground(Color.white);
+		calculo6.setOpaque(true);
+		calculo6.setFont(new Font("Bahnschrift", Font.BOLD, 20));
+		calculo6.setHorizontalAlignment(JLabel.LEFT);
+		centro.add(calculo6, BorderLayout.NORTH);
+		
+		JPanel botones = new JPanel();
+		botones.setLayout(new GridLayout(1, 2,20,20));
+		botones.setBorder(BorderFactory.createEmptyBorder(1, 100, 60, 100));
+		centro.add(botones, BorderLayout.SOUTH);
+		
+		String[] numerosBoton = { "Calcular", "Cancelar",};
+
+		for (String numeroTexto : numerosBoton) {
+			JButton boton = new JButton(numeroTexto);
+			boton.setBackground(Color.decode("#333333")); // Color de fondo
+			boton.setForeground(Color.WHITE); 
+			boton.setFont(new Font("Bahnschrift", Font.BOLD, 9));
+			botones.add(boton);
+		}
+		
+		JPanel botones2 = new JPanel();
+		botones2.setLayout(new GridLayout(3, 1,20,20));
+		botones2.setBorder(BorderFactory.createEmptyBorder(50, 50, 40, 5));
+		centro.add(botones2, BorderLayout.WEST);
+
+		String[] numerosBoton2 = { "Capital", "Interes", "Taza de iteres"};
+
+		for (String numeroTexto : numerosBoton2) {
+			JLabel boton = new JLabel(numeroTexto);
+			boton.setOpaque(true);
+			boton.setBackground(Color.LIGHT_GRAY); 
+			botones2.add(boton);
+		}
+		
+		JPanel botones3 = new JPanel();
+		botones3.setLayout(new GridLayout(3, 1, 20, 20));
+		botones3.setBorder(BorderFactory.createEmptyBorder(50, 5, 40, 50));
+		centro.add(botones3, BorderLayout.CENTER);
+
+		String[] numerosBoton3 = { "1500", "2", "0.1"};
+
+		for (String numeroTexto : numerosBoton3) {
+			JLabel boton = new JLabel(numeroTexto);
+			boton.setOpaque(true);
+			boton.setBackground(Color.LIGHT_GRAY);
+			botones3.add(boton);
+		}
+		
+
+		// panel de la parte inferior/////////////////////////////////////////
+		JPanel botonesSuperior = new JPanel();
+		botonesSuperior.setLayout(new GridLayout(2, 1,20,20));		
+		botonesSuperior.setBorder(BorderFactory.createEmptyBorder(30, 20, 50, 20));
+		panelSur.add(botonesSuperior, BorderLayout.WEST);
+
+		String[] operacionesBoton2 = { "Interes", "Monto",};
+
+		for (String operacionTexto : operacionesBoton2) {
+			JLabel boton2 = new JLabel(operacionTexto);
+			boton2.setOpaque(true);
+			boton2.setBackground(Color.LIGHT_GRAY); 
+			botonesSuperior.add(boton2);
+		}
+		
+		JPanel panel7 = new JPanel();
+		panel7.setLayout(new GridLayout(2, 1, 20, 20));
+		panel7.setBorder(BorderFactory.createEmptyBorder(30, 20, 50,20));
+		panelSur.add(panel7, BorderLayout.CENTER);
+
+		String[] numerosBoton4 = { "343.0000000000003", "792.9000000000000002"};
+
+		for (String numeroTexto : numerosBoton4) {
+			JLabel boton = new JLabel(numeroTexto);
+			boton.setOpaque(true);
+			boton.setBackground(Color.LIGHT_GRAY); 
+			panel7.add(boton);
+		}
+
+		return panelPrincipal1;
 	}
 
 	public JPanel calculos2() {
