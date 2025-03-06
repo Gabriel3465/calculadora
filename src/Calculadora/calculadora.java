@@ -33,13 +33,125 @@ public class calculadora extends JFrame {
 
 //		this.add(this.calculos());
 //		this.add(this.calculos2());
-		this.add(calculoInteres());
+//		this.add(calculoInteres());
+		this.add(calculoInteres2());
+
 		
 
 		this.repaint();
 		setVisible(true);
 
 	}
+	
+	public JPanel calculoInteres2() {
+
+
+		// PANEL PRINCIPAL///////////////////////////////////////////////////////////////////
+		JPanel panelPrincipal = new JPanel();
+		panelPrincipal.setBackground(Color.decode("#7F7F7F"));
+		panelPrincipal.setOpaque(true);
+		panelPrincipal.setLayout(new BorderLayout());
+
+		// Panel para mostrar título///////////////////////
+		JLabel titulo = new JLabel("Interés");
+		titulo.setBackground(Color.white);
+		titulo.setOpaque(true);
+		titulo.setFont(new Font("Bahnschrift", Font.BOLD, 40));
+		titulo.setHorizontalAlignment(JLabel.CENTER);
+		panelPrincipal.add(titulo, BorderLayout.NORTH);
+		
+		//panel del centro///////////////////////
+		JPanel centro = new JPanel();
+		centro.setOpaque(true);
+		centro.setBackground(Color.decode("#6dd9a8"));
+		centro.setLayout(new BorderLayout());
+		panelPrincipal.add(centro, BorderLayout.CENTER);
+		
+		JLabel subTitulo = new JLabel("Calcular interés");
+		subTitulo.setOpaque(false);
+		subTitulo.setFont(new Font("Bahnschrift", Font.BOLD, 19));
+		subTitulo.setHorizontalAlignment(JLabel.LEFT);
+		centro.add(subTitulo, BorderLayout.NORTH);	
+		
+		JPanel panel1 = new JPanel();
+		panel1.setLayout(new GridLayout(3, 1,0,10));
+        panel1.setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 10)); 
+		panel1.setOpaque(false); 
+		centro.add(panel1, BorderLayout.WEST);
+
+		String[] cadenaPanel = { "Capital:", "Tiempo:", "Tasa interés:" };
+
+		for (String numeroTexto : cadenaPanel) {
+			JLabel boton = new JLabel(numeroTexto);
+			panel1.add(boton);
+		}
+		
+		JPanel panel2 = new JPanel();
+		panel2.setLayout(new GridLayout(3, 1,0,10));
+        panel2.setBorder(BorderFactory.createEmptyBorder(40, 20, 40, 40)); 
+		panel2.setOpaque(false); 
+		centro.add(panel2, BorderLayout.CENTER);
+
+		String[] cadenaPanel2 = { " ", " ", " " };
+
+		for (String numeroTexto : cadenaPanel2) {
+			JTextField boton = new JTextField(numeroTexto);
+			panel2.add(boton);
+		}
+		
+		JPanel botones = new JPanel();
+		botones.setLayout(new GridLayout(1, 2,20,0));
+		botones.setBorder(BorderFactory.createEmptyBorder(0, 90, 60, 90)); 
+		botones.setOpaque(false); 
+		centro.add(botones, BorderLayout.SOUTH);
+
+		String[] cadenaPanel3 = { "Calcular", "Cancelar" };
+
+		for (String numeroTexto : cadenaPanel3) {
+			JButton boton = new JButton(numeroTexto);
+			boton.setBackground(Color.decode("#333333")); // Color de fondo
+			boton.setForeground(Color.WHITE); // Color de letra
+			boton.setFont(new Font("Bahnschrift", Font.BOLD, 12));
+			botones.add(boton);
+		}
+		
+		//panel inferior/////////////////////////////
+		JPanel panelInferior = new JPanel();
+		panelInferior.setBackground(Color.decode("#bfd96d"));
+		panelInferior.setOpaque(true);
+		panelInferior.setLayout(new BorderLayout());
+		panelPrincipal.add(panelInferior, BorderLayout.SOUTH);
+		
+		JPanel panel3 = new JPanel();
+		panel3.setLayout(new GridLayout(2, 1,0,20));
+		panel3.setBorder(BorderFactory.createEmptyBorder(40, 30, 40, 10)); 
+		panel3.setOpaque(false); 
+		panelInferior.add(panel3, BorderLayout.WEST);
+
+		String[] cadenaPanel4 = { "Interes: ", "Monto: " };
+
+		for (String numeroTexto : cadenaPanel4) {
+			JLabel boton = new JLabel(numeroTexto);
+			panel3.add(boton);
+		}
+
+		JPanel panel5 = new JPanel();
+		panel5.setLayout(new GridLayout(2, 1,0,20));
+		panel5.setBorder(BorderFactory.createEmptyBorder(40, 10, 40, 30)); 
+		panel5.setOpaque(false);
+		panelInferior.add(panel5, BorderLayout.CENTER);
+
+		String[] cadenaPanel5 = { " ", " " };
+
+		for (String numeroTexto : cadenaPanel5) {
+			JTextField boton = new JTextField(numeroTexto);
+			panel5.add(boton);
+		}
+		
+		return panelPrincipal;
+	}
+
+
 	
 	public JPanel calculoInteres() {
 
@@ -101,7 +213,7 @@ public class calculadora extends JFrame {
 		botones2.setBorder(BorderFactory.createEmptyBorder(50, 50, 40, 5));
 		centro.add(botones2, BorderLayout.WEST);
 
-		String[] numerosBoton2 = { "Capital", "Interes", "Taza de iteres"};
+		String[] numerosBoton2 = { "Capital", "Interes", "Taza de interes"};
 
 		for (String numeroTexto : numerosBoton2) {
 			JLabel boton = new JLabel(numeroTexto);
